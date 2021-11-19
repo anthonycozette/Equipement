@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipement
+{% endblock %}
+
+{% block body %}
+
+	<h1>Equipement</h1>
+
+	<div class="d-flex justify-content-end">
+		<a class="btn btn-dark col-2" href="{{ path('equipement') }}">back to list</a>
+	</div>
+
+	<table class="table">
+
+		<tbody>
+
+			<tr>
+				<th>NomOrdinateur</th>
+				<td>{{ equipement.nomOrdinateur }}</td>
+			</tr>
+			<tr>
+				<th>NomUtilisateur</th>
+				<td>{{ equipement.nomUtilisateur }}</td>
+			</tr>
+			<tr>
+				<th>PrenomUtilisateur</th>
+				<td>{{ equipement.prenomUtilisateur }}</td>
+			</tr>
+			<tr>
+				<th>RefQualite</th>
+				<td>{{ equipement.refQualite }}</td>
+			</tr>
+			<tr>
+				<th>Emplacement</th>
+				<td>{{ equipement.emplacement }}</td>
+			</tr>
+			<tr>
+				<th>Services</th>
+				<td>{{ equipement.services }}</td>
+			</tr>
+			<tr>
+				<th>AdresseIp</th>
+				<td>{{ equipement.adresseIp }}</td>
+			</tr>
+			<tr>
+				<th>Reference</th>
+				<td>{{ equipement.reference }}</td>
+			</tr>
+			<tr>
+				<th>ReseauLan</th>
+				<td>{{ equipement.reseauLan }}</td>
+			</tr>
+			<tr>
+				<th>TypeMateriel</th>
+				<td>{{ equipement.typeMateriel }}</td>
+			</tr>
+			<tr>
+				<th>NumeroSerie</th>
+				<td>{{ equipement.numeroSerie }}</td>
+			</tr>
+			<tr>
+				<th>EnService</th>
+				<td>{{ equipement.enService ? 'Yes' : 'No' }}</td>
+			</tr>
+			<tr>
+				<th>SystemeExploitation</th>
+				<td>{{ equipement.systemeExploitation }}</td>
+			</tr>
+			<tr>
+				<th>MacAdresse</th>
+				<td>{{ equipement.macAdresse }}</td>
+			</tr>
+			<tr>
+				<th>DateAchat</th>
+				<td>{{ equipement.dateAchat ? equipement.dateAchat|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>LoginAdminLocale</th>
+				<td>{{ equipement.loginAdminLocale }}</td>
+			</tr>
+			<tr>
+				<th>LoginAdminDomaine</th>
+				<td>{{ equipement.loginAdminDomaine }}</td>
+			</tr>
+			<tr>
+				<th>LoginUser</th>
+				<td>{{ equipement.loginUser }}</td>
+			</tr>
+			<tr>
+				<th>Vpn</th>
+				<td>{{ equipement.vpn ? 'Yes' : 'No' }}</td>
+			</tr>
+
+		</tbody>
+        
+	</table>
+
+{% endblock %}

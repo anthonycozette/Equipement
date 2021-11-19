@@ -3,24 +3,26 @@
 namespace App\Controller;
 
 use App\Entity\Equipement;
+use App\Form\EquipementType;
 use App\Repository\EquipementRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\EquipementType;
 
-class EquipementController extends AbstractController
+/**
+ * @Route("/equipement/crud")
+ */
+class EquipementCrudController extends AbstractController
 {
     /**
-     * @Route("/", name="equipement")
+     * @Route("/", name="equipement_crud_index", methods={"GET"})
      */
     public function index(EquipementRepository $equipementRepository): Response
     {
-        $equipement = $this->getDoctrine()->getRepository(Equipement::class)->findAll();
         return $this->render('equipement_crud/index.html.twig', [
-            'equipements' => $equipement,
+            'equipements' => $equipementRepository->findAll(),
         ]);
     }
 
@@ -81,21 +83,11 @@ class EquipementController extends AbstractController
      */
     public function delete(Request $request, Equipement $equipement, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $equipement->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$equipement->getId(), $request->request->get('_token'))) {
             $entityManager->remove($equipement);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('equipement_crud_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
-
-
-    //     public function index(): Response
-    //     {
-    //         return $this->render('equipement/index.html.twig', [
-    //             'controller_name' => 'EquipementController',
-    //         ]);
-    //     }
 }
