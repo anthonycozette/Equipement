@@ -15,6 +15,7 @@
         "easycorp/easyadmin-bundle": "^3.5",
         "lexik/form-filter-bundle": "^7.0",
         "phpdocumentor/reflection-docblock": "^5.3",
+        "phpoffice/phpspreadsheet": "^1.19",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "5.3.*",
         "symfony/console": "5.3.*",

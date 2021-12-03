@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Equipement index
+{% block title %}Equipement
 {% endblock %}
 
 {% block body %}
 	{% if is_granted('ROLE_USER') %}
 		<div class="row">
-        
-			<h1>Liste des Equipement</h1>
 
+			<h1>Liste des Equipements</h1>
+			
+			<div>
+				<h1>
+					<a class="btn btn-warning" href="{{ path('export') }}">Export excel</a>
+				</h1>
+
+			</div>
+			{% include 'search/index.html.twig' %}
 			<table class="table table-hover table-bordered">
 				<thead>
 					<tr>
@@ -28,83 +35,43 @@
 						{# <th>SystemeExploitation</th> #}
 						{# <th>MacAdresse</th> #}
 						{# <th>DateAchat</th> #}
-							<th>
-						LoginAdminLocale
-						</th>
+						<th>LoginAdminLocale</th>
 						{# <th>PwdAdminLocal</th> #}
-							<th>
-						LoginAdminDomaine
-						</th>
+						<th>LoginAdminDomaine</th>
 						{# <th>PwdAdminDomaine</th> #}
-							<th>
-						LoginUser
-						</th>
+						<th>LoginUser</th>
 						{# <th>PwdUser</th> #}
-							<th>
-						Vpn
-						</th>
-							<th>
-						actions
-					</th>
-				</tr>
+						<th>Vpn</th>
+						<th>actions</th>
+					</tr>
 				</thead>
 					<tbody>
 						{% for equipement in equipements %}
 							<tr>
 							{# <td>{{ equipement.id }}</td> #}
-								<td>
-							{{ equipement.nomOrdinateur }}
-							</td>
-								<td>
-							{{ equipement.nomUtilisateur }}
-							</td>
-								<td>
-							{{ equipement.prenomUtilisateur }}
-							</td>
-								<td>
-							{{ equipement.refQualite }}
-							</td>
-								<td>
-							{{ equipement.emplacement }}
-							</td>
-								<td>
-							{{ equipement.services }}
-							</td>
-								<td>
-							{{ equipement.adresseIp }}
-							</td>
+							<td>{{ equipement.nomOrdinateur }}</td>
+							<td>{{ equipement.nomUtilisateur }}</td>
+							<td>{{ equipement.prenomUtilisateur }}</td>
+							<td>{{ equipement.refQualite }}</td>
+							<td>{{ equipement.emplacement }}</td>
+							<td>{{ equipement.services }}</td>
+							<td>{{ equipement.adresseIp }}</td>
 							{# <td>{{ equipement.reference }}</td> #}
 							{# <td>{{ equipement.reseauLan }}</td> #}
-								<td>
-							{{ equipement.typeMateriel }}
-							</td>
+							<td>{{ equipement.typeMateriel }}</td>
 							{# <td>{{ equipement.numeroSerie }}</td> #}
-								<td>
-							{{ equipement.enService ? 'Yes' : 'No' }}
-							</td>
+							<td>{{ equipement.enService ? 'Yes' : 'No' }}</td>
 							{# <td>{{ equipement.systemeExploitation }}</td> #}
 							{# <td>{{ equipement.macAdresse }}</td> #}
 							{# <td>{{ equipement.dateAchat ? equipement.dateAchat|date('Y-m-d') : '' }}</td> #}
-								<td>
-							{{ equipement.loginAdminLocale }}
-							</td>
+							<td>{{ equipement.loginAdminLocale }}</td>
 							{# <td>{{ equipement.pwdAdminLocal }}</td> #}
-								<td>
-							{{ equipement.loginAdminDomaine }}
-							</td>
+							<td>{{ equipement.loginAdminDomaine }}</td>
 							{# <td>{{ equipement.pwdAdminDomaine }}</td> #}
-								<td>
-							{{ equipement.loginUser }}
-							</td>
+							<td>{{ equipement.loginUser }}</td>
 							{# <td>{{ equipement.pwdUser }}</td> #}
-								<td>
-							{{ equipement.vpn ? 'Yes' : 'No' }}
-							</td>
-								<td>
-
-									<a class="btn btn-info" href="{{ path('equipement_crud_show', {'id': equipement.id}) }}"><i class="far fa-eye"></i></a>
-
-							</td>
+							<td>{{ equipement.vpn ? 'Yes' : 'No' }}</td>
+							<td><a class="btn btn-info" href="{{ path('equipement_crud_show', {'id': equipement.id}) }}"> <i class="far fa-eye"></i></a></td>
 						</tr>
 					{% else %}
 						<tr>
@@ -114,12 +81,12 @@
 				</tbody>
 			</table>
 			{# {% if is_granted('ROLE_ADMIN') %}
-										    <a href="{{ path('equipement_crud_new') }}">Create new</a>
-										    {% endif %} #}
+				<a href="{{ path('equipement_crud_new') }}">Create new</a>
+			{% endif %} #}
 		</div>
 	{% else %}
 		<div>
-			<p>Merci de vous connecte</p>
+			<h1 class="mt-5" style="text-align:center">Merci de vous connecte</h1>
 		</div>
 	{% endif %}
 {% endblock %}

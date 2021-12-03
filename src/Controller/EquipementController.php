@@ -2,28 +2,30 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use App\Entity\Equipement;
+use App\Form\EquipementType;
 use App\Repository\EquipementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\EquipementType;
 
 class EquipementController extends AbstractController
 {
     /**
      * @Route("/", name="equipement")
      */
-    public function index(EquipementRepository $equipementRepository): Response
+    public function index(): Response
     {
         $equipement = $this->getDoctrine()->getRepository(Equipement::class)->findAll();
         return $this->render('equipement_crud/index.html.twig', [
             'equipements' => $equipement,
         ]);
     }
-
+   
     /**
      * @Route("/new", name="equipement_crud_new", methods={"GET", "POST"})
      */
